@@ -1,0 +1,1353 @@
+
+IR_Remote.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000014  00800100  00000686  0000071a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000686  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000006  00800114  00800114  0000072e  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000730  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000090  00000000  00000000  00000dfc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000c0  00000000  00000000  00000e8c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 0000019f  00000000  00000000  00000f4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00000721  00000000  00000000  000010eb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 0000041c  00000000  00000000  0000180c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   00000bd9  00000000  00000000  00001c28  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  000001c0  00000000  00000000  00002804  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    0000039b  00000000  00000000  000029c4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_pubtypes 00000104  00000000  00000000  00002d5f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
+   4:	32 c0       	rjmp	.+100    	; 0x6a <__bad_interrupt>
+   6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
+   8:	e5 c2       	rjmp	.+1482   	; 0x5d4 <__vector_4>
+   a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
+   c:	2e c0       	rjmp	.+92     	; 0x6a <__bad_interrupt>
+   e:	e8 c0       	rjmp	.+464    	; 0x1e0 <__vector_7>
+  10:	2c c0       	rjmp	.+88     	; 0x6a <__bad_interrupt>
+  12:	2b c0       	rjmp	.+86     	; 0x6a <__bad_interrupt>
+  14:	2a c0       	rjmp	.+84     	; 0x6a <__bad_interrupt>
+  16:	29 c0       	rjmp	.+82     	; 0x6a <__bad_interrupt>
+  18:	28 c0       	rjmp	.+80     	; 0x6a <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__bad_interrupt>
+  1c:	27 c1       	rjmp	.+590    	; 0x26c <__vector_14>
+  1e:	4c c1       	rjmp	.+664    	; 0x2b8 <__vector_15>
+  20:	5b c1       	rjmp	.+694    	; 0x2d8 <__vector_16>
+  22:	23 c0       	rjmp	.+70     	; 0x6a <__bad_interrupt>
+  24:	22 c0       	rjmp	.+68     	; 0x6a <__bad_interrupt>
+  26:	21 c0       	rjmp	.+66     	; 0x6a <__bad_interrupt>
+  28:	20 c0       	rjmp	.+64     	; 0x6a <__bad_interrupt>
+  2a:	1f c0       	rjmp	.+62     	; 0x6a <__bad_interrupt>
+  2c:	1e c0       	rjmp	.+60     	; 0x6a <__bad_interrupt>
+  2e:	1d c0       	rjmp	.+58     	; 0x6a <__bad_interrupt>
+  30:	1c c0       	rjmp	.+56     	; 0x6a <__bad_interrupt>
+  32:	1b c0       	rjmp	.+54     	; 0x6a <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d2 e0       	ldi	r29, 0x02	; 2
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_copy_data>:
+  40:	11 e0       	ldi	r17, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	e6 e8       	ldi	r30, 0x86	; 134
+  48:	f6 e0       	ldi	r31, 0x06	; 6
+  4a:	02 c0       	rjmp	.+4      	; 0x50 <__do_copy_data+0x10>
+  4c:	05 90       	lpm	r0, Z+
+  4e:	0d 92       	st	X+, r0
+  50:	a4 31       	cpi	r26, 0x14	; 20
+  52:	b1 07       	cpc	r27, r17
+  54:	d9 f7       	brne	.-10     	; 0x4c <__do_copy_data+0xc>
+
+00000056 <__do_clear_bss>:
+  56:	11 e0       	ldi	r17, 0x01	; 1
+  58:	a4 e1       	ldi	r26, 0x14	; 20
+  5a:	b1 e0       	ldi	r27, 0x01	; 1
+  5c:	01 c0       	rjmp	.+2      	; 0x60 <.do_clear_bss_start>
+
+0000005e <.do_clear_bss_loop>:
+  5e:	1d 92       	st	X+, r1
+
+00000060 <.do_clear_bss_start>:
+  60:	aa 31       	cpi	r26, 0x1A	; 26
+  62:	b1 07       	cpc	r27, r17
+  64:	e1 f7       	brne	.-8      	; 0x5e <.do_clear_bss_loop>
+  66:	01 d3       	rcall	.+1538   	; 0x66a <main>
+  68:	0c c3       	rjmp	.+1560   	; 0x682 <_exit>
+
+0000006a <__bad_interrupt>:
+  6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
+
+0000006c <configure_Ports>:
+
+/************************/
+/* configure IO Ports	*/
+/************************/
+PRIVATE void configure_Ports(void)
+{
+  6c:	df 93       	push	r29
+  6e:	cf 93       	push	r28
+  70:	cd b7       	in	r28, 0x3d	; 61
+  72:	de b7       	in	r29, 0x3e	; 62
+	/********************/
+	/* configure Port B	*/
+	/********************/
+	
+	// pin direction
+	DDRB =
+  74:	84 e2       	ldi	r24, 0x24	; 36
+  76:	90 e0       	ldi	r25, 0x00	; 0
+  78:	20 e9       	ldi	r18, 0x90	; 144
+  7a:	fc 01       	movw	r30, r24
+  7c:	20 83       	st	Z, r18
+	(0 << bit_5)	|		// PB5: will be Alt funct. (input)	--> UC_SCK	// SLAVE Clock input (no pull-up)
+	(0 << bit_6)	|		// PB6: will be Alt funct. (input)	--> XTAL1	// input to the inverting oscillator amp (no pull-up)
+	(1 << bit_7);			// PB7: will be Alt funct. (output)	--> XTAL2	// output from the inverting oscillator amp	
+	
+	// pull-up resistors	
+	PORTB =
+  7e:	85 e2       	ldi	r24, 0x25	; 37
+  80:	90 e0       	ldi	r25, 0x00	; 0
+  82:	27 e0       	ldi	r18, 0x07	; 7
+  84:	fc 01       	movw	r30, r24
+  86:	20 83       	st	Z, r18
+	/********************/
+	/* configure Port C	*/
+	/********************/
+
+	// pin direction
+	DDRC =
+  88:	87 e2       	ldi	r24, 0x27	; 39
+  8a:	90 e0       	ldi	r25, 0x00	; 0
+  8c:	fc 01       	movw	r30, r24
+  8e:	10 82       	st	Z, r1
+	(0 << bit_4)	|		// PC4 is configured as input		--> SW_FILTER	--(no internal pull-up)
+	(0 << bit_5)	|		// PC5 is configured as input		--> SW_IPUT		--(no internal pull-up)
+	(0 << bit_6);			// PC6: will be Alt funct. (input)	--> UC_RESET	--(no internal pull-up)
+		
+	// pull-up resistors	
+	PORTC =
+  90:	88 e2       	ldi	r24, 0x28	; 40
+  92:	90 e0       	ldi	r25, 0x00	; 0
+  94:	fc 01       	movw	r30, r24
+  96:	10 82       	st	Z, r1
+	/********************/
+	/* configure Port D	*/
+	/********************/
+
+	// pin direction
+	DDRD =
+  98:	8a e2       	ldi	r24, 0x2A	; 42
+  9a:	90 e0       	ldi	r25, 0x00	; 0
+  9c:	28 e2       	ldi	r18, 0x28	; 40
+  9e:	fc 01       	movw	r30, r24
+  a0:	20 83       	st	Z, r18
+	(1 << bit_5)	|		// PD5: Alt function (output)	--> OC0B / IR_XMIT
+	(0 << bit_6)	|		// PD6 is configured as input	--> NC
+	(0 << bit_7);			// PD7 is configured as input	--> NC
+		
+	// pull-up resistors	
+	PORTD =
+  a2:	8b e2       	ldi	r24, 0x2B	; 43
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	27 ed       	ldi	r18, 0xD7	; 215
+  a8:	fc 01       	movw	r30, r24
+  aa:	20 83       	st	Z, r18
+	(1 << bit_4)	|		// PD4, pull-up ACTIVE
+	(0 << bit_5)	|		// PD5, Output is Initialized to Zero level (IR XMIT OFF)
+	(1 << bit_6)	|		// PD6, pull-up ACTIVE
+	(1 << bit_7);			// PD7, pull-up ACTIVE
+	
+}
+  ac:	cf 91       	pop	r28
+  ae:	df 91       	pop	r29
+  b0:	08 95       	ret
+
+000000b2 <configure_Clocks>:
+
+PRIVATE void configure_Clocks()
+{
+  b2:	df 93       	push	r29
+  b4:	cf 93       	push	r28
+  b6:	00 d0       	rcall	.+0      	; 0xb8 <configure_Clocks+0x6>
+  b8:	cd b7       	in	r28, 0x3d	; 61
+  ba:	de b7       	in	r29, 0x3e	; 62
+  bc:	19 82       	std	Y+1, r1	; 0x01
+
+The type of x is clock_div_t.
+*/
+void clock_prescale_set(clock_div_t __x)
+{
+    uint8_t __tmp = _BV(CLKPCE);
+  be:	80 e8       	ldi	r24, 0x80	; 128
+  c0:	8a 83       	std	Y+2, r24	; 0x02
+    __asm__ __volatile__ (
+  c2:	8a 81       	ldd	r24, Y+2	; 0x02
+  c4:	99 81       	ldd	r25, Y+1	; 0x01
+  c6:	0f b6       	in	r0, 0x3f	; 63
+  c8:	f8 94       	cli
+  ca:	80 93 61 00 	sts	0x0061, r24
+  ce:	90 93 61 00 	sts	0x0061, r25
+  d2:	0f be       	out	0x3f, r0	; 63
+	// start up time, slowly rising power: CKSEL0 SUT1...0   -> 1 11 
+	
+	/*  Set clock division	*/
+	//CLK_DIV(0);						// set clock divide to 1, using private macro
+	clock_prescale_set(clock_div_1);	// set clock divide to 1, using supplied function
+}
+  d4:	0f 90       	pop	r0
+  d6:	0f 90       	pop	r0
+  d8:	cf 91       	pop	r28
+  da:	df 91       	pop	r29
+  dc:	08 95       	ret
+
+000000de <configure_WDT>:
+
+PRIVATE void configure_WDT()
+{
+  de:	df 93       	push	r29
+  e0:	cf 93       	push	r28
+  e2:	cd b7       	in	r28, 0x3d	; 61
+  e4:	de b7       	in	r29, 0x3e	; 62
+	wdt_disable();
+  e6:	88 e1       	ldi	r24, 0x18	; 24
+  e8:	0f b6       	in	r0, 0x3f	; 63
+  ea:	f8 94       	cli
+  ec:	80 93 60 00 	sts	0x0060, r24
+  f0:	10 92 60 00 	sts	0x0060, r1
+  f4:	0f be       	out	0x3f, r0	; 63
+	// Do this later
+}
+  f6:	cf 91       	pop	r28
+  f8:	df 91       	pop	r29
+  fa:	08 95       	ret
+
+000000fc <configure_Micro>:
+
+PUBLIC void configure_Micro(void)
+{
+  fc:	df 93       	push	r29
+  fe:	cf 93       	push	r28
+ 100:	cd b7       	in	r28, 0x3d	; 61
+ 102:	de b7       	in	r29, 0x3e	; 62
+	configure_Ports();
+ 104:	b3 df       	rcall	.-154    	; 0x6c <configure_Ports>
+	configure_Clocks();
+ 106:	d5 df       	rcall	.-86     	; 0xb2 <configure_Clocks>
+	//configure_Interrupts();
+	//configure_Power();
+	configure_WDT();
+ 108:	ea df       	rcall	.-44     	; 0xde <configure_WDT>
+	//configure_misc_SystemRegs();
+}
+ 10a:	cf 91       	pop	r28
+ 10c:	df 91       	pop	r29
+ 10e:	08 95       	ret
+
+00000110 <timer_Init>:
+	since it would not get program flow control during these multiple interrupts.
+#endif
+
+
+PUBLIC void timer_Init(void)
+{
+ 110:	df 93       	push	r29
+ 112:	cf 93       	push	r28
+ 114:	cd b7       	in	r28, 0x3d	; 61
+ 116:	de b7       	in	r29, 0x3e	; 62
+	(0 << bit_7);			// reserved bit	
+#endif	
+/********************************/
+/* Set up faux PWM on Timer 0	*/
+/********************************/
+	OCR0A = PWM_RUN;		// set the 38kHz PWM Timer to Stop Mode -- Make PWM_RUN == 65 when using 20Meg crystal
+ 118:	87 e4       	ldi	r24, 0x47	; 71
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+ 11c:	2a e6       	ldi	r18, 0x6A	; 106
+ 11e:	fc 01       	movw	r30, r24
+ 120:	20 83       	st	Z, r18
+	
+	TCCR0A =
+ 122:	84 e4       	ldi	r24, 0x44	; 68
+ 124:	90 e0       	ldi	r25, 0x00	; 0
+ 126:	22 e0       	ldi	r18, 0x02	; 2
+ 128:	fc 01       	movw	r30, r24
+ 12a:	20 83       	st	Z, r18
+	(0 << bit_4)	|		// COM0B0: OCOB disconnected from pin
+	(0 << bit_5)	|		// COM0B1: OCOB disconnected from pin
+	(0 << bit_6)	|		// COM0A0: OCOA disconnected from pin
+	(0 << bit_7);			// COM0A1: OCOA disconnected from pin
+	
+	TCCR0B =
+ 12c:	85 e4       	ldi	r24, 0x45	; 69
+ 12e:	90 e0       	ldi	r25, 0x00	; 0
+ 130:	21 e0       	ldi	r18, 0x01	; 1
+ 132:	fc 01       	movw	r30, r24
+ 134:	20 83       	st	Z, r18
+	(0 << bit_4)	|		// reserved bit
+	(0 << bit_5)	|		// reserved bit
+	(0 << bit_6)	|		// FOC0B: No forced output
+	(0 << bit_7);			// FOc0A: No forced output 
+	
+	TIMSK0 = 
+ 136:	8e e6       	ldi	r24, 0x6E	; 110
+ 138:	90 e0       	ldi	r25, 0x00	; 0
+ 13a:	fc 01       	movw	r30, r24
+ 13c:	10 82       	st	Z, r1
+	(0 << bit_7);			// reserved bit
+	
+	/********************************/
+	/*   TICK TIMER SETUP (Timer2)	*/
+	/********************************/
+	OCR2A = TICK_TIMER_RATE_COUNT;		// sets the terminal count for a TICK Timer running at 38KHz
+ 13e:	83 eb       	ldi	r24, 0xB3	; 179
+ 140:	90 e0       	ldi	r25, 0x00	; 0
+ 142:	24 e3       	ldi	r18, 0x34	; 52
+ 144:	fc 01       	movw	r30, r24
+ 146:	20 83       	st	Z, r18
+	
+	TCCR2A =
+ 148:	80 eb       	ldi	r24, 0xB0	; 176
+ 14a:	90 e0       	ldi	r25, 0x00	; 0
+ 14c:	22 e0       	ldi	r18, 0x02	; 2
+ 14e:	fc 01       	movw	r30, r24
+ 150:	20 83       	st	Z, r18
+	(0 << bit_4)	|		// COM2B0: OCOb disconnected from pin
+	(0 << bit_5)	|		// COM2B1: OCOB disconnected from pin
+	(0 << bit_6)	|		// COM2A0: OCOA disconnected from pin
+	(0 << bit_7);			// COM2A1: OCOA disconnected from pin
+	
+	TCCR2B =
+ 152:	81 eb       	ldi	r24, 0xB1	; 177
+ 154:	90 e0       	ldi	r25, 0x00	; 0
+ 156:	24 e0       	ldi	r18, 0x04	; 4
+ 158:	fc 01       	movw	r30, r24
+ 15a:	20 83       	st	Z, r18
+	(0 << bit_4)	|		// reserved bit
+	(0 << bit_5)	|		// reserved bit
+	(0 << bit_6)	|		// FOC2B: No forced output
+	(0 << bit_7);			// FOc2A: No forced output 
+	
+	TIMSK2 = 
+ 15c:	80 e7       	ldi	r24, 0x70	; 112
+ 15e:	90 e0       	ldi	r25, 0x00	; 0
+ 160:	22 e0       	ldi	r18, 0x02	; 2
+ 162:	fc 01       	movw	r30, r24
+ 164:	20 83       	st	Z, r18
+	(0 << bit_3)	|		// reserved bit
+	(0 << bit_4)	|		// reserved bit
+	(0 << bit_5)	|		// reserved bit
+	(0 << bit_6)	|		// reserved bit
+	(0 << bit_7);			// reserved bit
+}
+ 166:	cf 91       	pop	r28
+ 168:	df 91       	pop	r29
+ 16a:	08 95       	ret
+
+0000016c <timer_Get>:
+
+PUBLIC uint16_t timer_Get(timer_t timer)
+{
+ 16c:	df 93       	push	r29
+ 16e:	cf 93       	push	r28
+ 170:	00 d0       	rcall	.+0      	; 0x172 <timer_Get+0x6>
+ 172:	0f 92       	push	r0
+ 174:	cd b7       	in	r28, 0x3d	; 61
+ 176:	de b7       	in	r29, 0x3e	; 62
+ 178:	8b 83       	std	Y+3, r24	; 0x03
+	// critical section: probably wouldn't be needed with uint8_t, 8 bit access is guaranteed atomic
+	uint16_t temp_time;
+	
+	cli();
+ 17a:	f8 94       	cli
+	temp_time = timer_array[timer];		// access time remaining on requested timer
+ 17c:	8b 81       	ldd	r24, Y+3	; 0x03
+ 17e:	88 2f       	mov	r24, r24
+ 180:	90 e0       	ldi	r25, 0x00	; 0
+ 182:	88 0f       	add	r24, r24
+ 184:	99 1f       	adc	r25, r25
+ 186:	80 50       	subi	r24, 0x00	; 0
+ 188:	9f 4f       	sbci	r25, 0xFF	; 255
+ 18a:	fc 01       	movw	r30, r24
+ 18c:	80 81       	ld	r24, Z
+ 18e:	91 81       	ldd	r25, Z+1	; 0x01
+ 190:	9a 83       	std	Y+2, r25	; 0x02
+ 192:	89 83       	std	Y+1, r24	; 0x01
+	sei();
+ 194:	78 94       	sei
+		
+	return(temp_time); 
+ 196:	89 81       	ldd	r24, Y+1	; 0x01
+ 198:	9a 81       	ldd	r25, Y+2	; 0x02
+}
+ 19a:	0f 90       	pop	r0
+ 19c:	0f 90       	pop	r0
+ 19e:	0f 90       	pop	r0
+ 1a0:	cf 91       	pop	r28
+ 1a2:	df 91       	pop	r29
+ 1a4:	08 95       	ret
+
+000001a6 <timer_Set>:
+
+PUBLIC void timer_Set(timer_t timer, uint16_t time)
+{
+ 1a6:	df 93       	push	r29
+ 1a8:	cf 93       	push	r28
+ 1aa:	00 d0       	rcall	.+0      	; 0x1ac <timer_Set+0x6>
+ 1ac:	0f 92       	push	r0
+ 1ae:	cd b7       	in	r28, 0x3d	; 61
+ 1b0:	de b7       	in	r29, 0x3e	; 62
+ 1b2:	89 83       	std	Y+1, r24	; 0x01
+ 1b4:	7b 83       	std	Y+3, r23	; 0x03
+ 1b6:	6a 83       	std	Y+2, r22	; 0x02
+	// critical section: probably wouldn't be needed with uint8_t, 8 bit access is guaranteed atomic
+	cli();
+ 1b8:	f8 94       	cli
+	timer_array[timer] = time;			// setup timer for requested time
+ 1ba:	89 81       	ldd	r24, Y+1	; 0x01
+ 1bc:	88 2f       	mov	r24, r24
+ 1be:	90 e0       	ldi	r25, 0x00	; 0
+ 1c0:	88 0f       	add	r24, r24
+ 1c2:	99 1f       	adc	r25, r25
+ 1c4:	80 50       	subi	r24, 0x00	; 0
+ 1c6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 1c8:	2a 81       	ldd	r18, Y+2	; 0x02
+ 1ca:	3b 81       	ldd	r19, Y+3	; 0x03
+ 1cc:	fc 01       	movw	r30, r24
+ 1ce:	31 83       	std	Z+1, r19	; 0x01
+ 1d0:	20 83       	st	Z, r18
+	sei();
+ 1d2:	78 94       	sei
+}
+ 1d4:	0f 90       	pop	r0
+ 1d6:	0f 90       	pop	r0
+ 1d8:	0f 90       	pop	r0
+ 1da:	cf 91       	pop	r28
+ 1dc:	df 91       	pop	r29
+ 1de:	08 95       	ret
+
+000001e0 <__vector_7>:
+/********************************************/
+/*				TICK TIMER ISR				*/
+/* Timer2 Compare Match A Interrupt Handler	*/
+/********************************************/
+ISR(TIMER2_COMPA_vect)
+{
+ 1e0:	1f 92       	push	r1
+ 1e2:	0f 92       	push	r0
+ 1e4:	0f b6       	in	r0, 0x3f	; 63
+ 1e6:	0f 92       	push	r0
+ 1e8:	11 24       	eor	r1, r1
+ 1ea:	2f 93       	push	r18
+ 1ec:	3f 93       	push	r19
+ 1ee:	8f 93       	push	r24
+ 1f0:	9f 93       	push	r25
+ 1f2:	ef 93       	push	r30
+ 1f4:	ff 93       	push	r31
+ 1f6:	df 93       	push	r29
+ 1f8:	cf 93       	push	r28
+ 1fa:	0f 92       	push	r0
+ 1fc:	cd b7       	in	r28, 0x3d	; 61
+ 1fe:	de b7       	in	r29, 0x3e	; 62
+	uint8_t i;
+	
+	for(i=0; i < timer_Number; i++)	
+ 200:	19 82       	std	Y+1, r1	; 0x01
+ 202:	23 c0       	rjmp	.+70     	; 0x24a <__vector_7+0x6a>
+	{
+		if(timer_array[i])
+ 204:	89 81       	ldd	r24, Y+1	; 0x01
+ 206:	88 2f       	mov	r24, r24
+ 208:	90 e0       	ldi	r25, 0x00	; 0
+ 20a:	88 0f       	add	r24, r24
+ 20c:	99 1f       	adc	r25, r25
+ 20e:	80 50       	subi	r24, 0x00	; 0
+ 210:	9f 4f       	sbci	r25, 0xFF	; 255
+ 212:	fc 01       	movw	r30, r24
+ 214:	80 81       	ld	r24, Z
+ 216:	91 81       	ldd	r25, Z+1	; 0x01
+ 218:	00 97       	sbiw	r24, 0x00	; 0
+ 21a:	a1 f0       	breq	.+40     	; 0x244 <__vector_7+0x64>
+		{
+			timer_array[i]--;
+ 21c:	89 81       	ldd	r24, Y+1	; 0x01
+ 21e:	88 2f       	mov	r24, r24
+ 220:	90 e0       	ldi	r25, 0x00	; 0
+ 222:	9c 01       	movw	r18, r24
+ 224:	22 0f       	add	r18, r18
+ 226:	33 1f       	adc	r19, r19
+ 228:	20 50       	subi	r18, 0x00	; 0
+ 22a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 22c:	f9 01       	movw	r30, r18
+ 22e:	20 81       	ld	r18, Z
+ 230:	31 81       	ldd	r19, Z+1	; 0x01
+ 232:	21 50       	subi	r18, 0x01	; 1
+ 234:	30 40       	sbci	r19, 0x00	; 0
+ 236:	88 0f       	add	r24, r24
+ 238:	99 1f       	adc	r25, r25
+ 23a:	80 50       	subi	r24, 0x00	; 0
+ 23c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 23e:	fc 01       	movw	r30, r24
+ 240:	31 83       	std	Z+1, r19	; 0x01
+ 242:	20 83       	st	Z, r18
+/********************************************/
+ISR(TIMER2_COMPA_vect)
+{
+	uint8_t i;
+	
+	for(i=0; i < timer_Number; i++)	
+ 244:	89 81       	ldd	r24, Y+1	; 0x01
+ 246:	8f 5f       	subi	r24, 0xFF	; 255
+ 248:	89 83       	std	Y+1, r24	; 0x01
+ 24a:	89 81       	ldd	r24, Y+1	; 0x01
+ 24c:	84 30       	cpi	r24, 0x04	; 4
+ 24e:	d0 f2       	brcs	.-76     	; 0x204 <__vector_7+0x24>
+		if(timer_array[i])
+		{
+			timer_array[i]--;
+		}
+	}	
+}
+ 250:	0f 90       	pop	r0
+ 252:	cf 91       	pop	r28
+ 254:	df 91       	pop	r29
+ 256:	ff 91       	pop	r31
+ 258:	ef 91       	pop	r30
+ 25a:	9f 91       	pop	r25
+ 25c:	8f 91       	pop	r24
+ 25e:	3f 91       	pop	r19
+ 260:	2f 91       	pop	r18
+ 262:	0f 90       	pop	r0
+ 264:	0f be       	out	0x3f, r0	; 63
+ 266:	0f 90       	pop	r0
+ 268:	1f 90       	pop	r1
+ 26a:	18 95       	reti
+
+0000026c <__vector_14>:
+/************************************************/
+/*  IR XMIT:  When ENABLED IR XMIT is ACTIVE	*/
+/************************************************/
+//Timer0 Compare Match A Interrupt Handler
+ISR(TIMER0_COMPA_vect)
+{
+ 26c:	1f 92       	push	r1
+ 26e:	0f 92       	push	r0
+ 270:	0f b6       	in	r0, 0x3f	; 63
+ 272:	0f 92       	push	r0
+ 274:	11 24       	eor	r1, r1
+ 276:	2f 93       	push	r18
+ 278:	3f 93       	push	r19
+ 27a:	8f 93       	push	r24
+ 27c:	9f 93       	push	r25
+ 27e:	ef 93       	push	r30
+ 280:	ff 93       	push	r31
+ 282:	df 93       	push	r29
+ 284:	cf 93       	push	r28
+ 286:	cd b7       	in	r28, 0x3d	; 61
+ 288:	de b7       	in	r29, 0x3e	; 62
+	PORTD  ^= 1 << IR_XMIT_PIN_MASK;				// TOGGLe IR xmit pin
+ 28a:	8b e2       	ldi	r24, 0x2B	; 43
+ 28c:	90 e0       	ldi	r25, 0x00	; 0
+ 28e:	2b e2       	ldi	r18, 0x2B	; 43
+ 290:	30 e0       	ldi	r19, 0x00	; 0
+ 292:	f9 01       	movw	r30, r18
+ 294:	30 81       	ld	r19, Z
+ 296:	20 e2       	ldi	r18, 0x20	; 32
+ 298:	23 27       	eor	r18, r19
+ 29a:	fc 01       	movw	r30, r24
+ 29c:	20 83       	st	Z, r18
+}
+ 29e:	cf 91       	pop	r28
+ 2a0:	df 91       	pop	r29
+ 2a2:	ff 91       	pop	r31
+ 2a4:	ef 91       	pop	r30
+ 2a6:	9f 91       	pop	r25
+ 2a8:	8f 91       	pop	r24
+ 2aa:	3f 91       	pop	r19
+ 2ac:	2f 91       	pop	r18
+ 2ae:	0f 90       	pop	r0
+ 2b0:	0f be       	out	0x3f, r0	; 63
+ 2b2:	0f 90       	pop	r0
+ 2b4:	1f 90       	pop	r1
+ 2b6:	18 95       	reti
+
+000002b8 <__vector_15>:
+// Timer0 Compare Match B Interrupt Handler	-- DISABLED
+ISR(TIMER0_COMPB_vect)
+{
+ 2b8:	1f 92       	push	r1
+ 2ba:	0f 92       	push	r0
+ 2bc:	0f b6       	in	r0, 0x3f	; 63
+ 2be:	0f 92       	push	r0
+ 2c0:	11 24       	eor	r1, r1
+ 2c2:	df 93       	push	r29
+ 2c4:	cf 93       	push	r28
+ 2c6:	cd b7       	in	r28, 0x3d	; 61
+ 2c8:	de b7       	in	r29, 0x3e	; 62
+	
+}
+ 2ca:	cf 91       	pop	r28
+ 2cc:	df 91       	pop	r29
+ 2ce:	0f 90       	pop	r0
+ 2d0:	0f be       	out	0x3f, r0	; 63
+ 2d2:	0f 90       	pop	r0
+ 2d4:	1f 90       	pop	r1
+ 2d6:	18 95       	reti
+
+000002d8 <__vector_16>:
+// Timer0 Overflow Interrupt Handler	-- DISABLED
+ISR(TIMER0_OVF_vect)
+{
+ 2d8:	1f 92       	push	r1
+ 2da:	0f 92       	push	r0
+ 2dc:	0f b6       	in	r0, 0x3f	; 63
+ 2de:	0f 92       	push	r0
+ 2e0:	11 24       	eor	r1, r1
+ 2e2:	df 93       	push	r29
+ 2e4:	cf 93       	push	r28
+ 2e6:	cd b7       	in	r28, 0x3d	; 61
+ 2e8:	de b7       	in	r29, 0x3e	; 62
+	
+ 2ea:	cf 91       	pop	r28
+ 2ec:	df 91       	pop	r29
+ 2ee:	0f 90       	pop	r0
+ 2f0:	0f be       	out	0x3f, r0	; 63
+ 2f2:	0f 90       	pop	r0
+ 2f4:	1f 90       	pop	r1
+ 2f6:	18 95       	reti
+
+000002f8 <sleep_state_Init>:
+/*	     Public Function Definitions			*/
+/*	     Private Function Definitions			*/
+/************************************************/
+
+PUBLIC void sleep_state_Init(void)
+{
+ 2f8:	df 93       	push	r29
+ 2fa:	cf 93       	push	r28
+ 2fc:	cd b7       	in	r28, 0x3d	; 61
+ 2fe:	de b7       	in	r29, 0x3e	; 62
+	SMCR =
+ 300:	83 e5       	ldi	r24, 0x53	; 83
+ 302:	90 e0       	ldi	r25, 0x00	; 0
+ 304:	24 e0       	ldi	r18, 0x04	; 4
+ 306:	fc 01       	movw	r30, r24
+ 308:	20 83       	st	Z, r18
+	(0 << bit_4)	|		// reserved
+	(0 << bit_5)	|		// reserved
+	(0 << bit_6)	|		// reserved
+	(0 << bit_7);			// reserved
+	
+	PRR =					// No Power Reduction for now
+ 30a:	84 e6       	ldi	r24, 0x64	; 100
+ 30c:	90 e0       	ldi	r25, 0x00	; 0
+ 30e:	fc 01       	movw	r30, r24
+ 310:	10 82       	st	Z, r1
+	(0 << bit_3)	|		// PRTIM1:	Power Reduction Timer/counter1
+	(0 << bit_4)	|		// reserved
+	(0 << bit_5)	|		// PRTIM0:	Power Reduction Timer/Counter0
+	(0 << bit_6)	|		// PRTIM2:	Power Reduction Timer/counter2
+	(0 << bit_7);			// PRTWI:	Power Reduction TWI
+}
+ 312:	cf 91       	pop	r28
+ 314:	df 91       	pop	r29
+ 316:	08 95       	ret
+
+00000318 <sleep_state_Control>:
+
+PUBLIC void sleep_state_Control(void)	// Must look at fuses CKSEL, and "Start-Up time see page 28
+{
+ 318:	df 93       	push	r29
+ 31a:	cf 93       	push	r28
+ 31c:	cd b7       	in	r28, 0x3d	; 61
+ 31e:	de b7       	in	r29, 0x3e	; 62
+		cli();									
+ 320:	f8 94       	cli
+		if(timer_Get(sleep_timer) == 0)					// CLI() prevents ISR from running after this test and causing problems:
+ 322:	83 e0       	ldi	r24, 0x03	; 3
+ 324:	23 df       	rcall	.-442    	; 0x16c <timer_Get>
+ 326:	00 97       	sbiw	r24, 0x00	; 0
+ 328:	c9 f4       	brne	.+50     	; 0x35c <sleep_state_Control+0x44>
+		{												// if INT occurs HERE, micro will wake immediately after exectuing sleep_cpu()
+			PORTD &= ~(DEVELOPMENT_LED);
+ 32a:	8b e2       	ldi	r24, 0x2B	; 43
+ 32c:	90 e0       	ldi	r25, 0x00	; 0
+ 32e:	2b e2       	ldi	r18, 0x2B	; 43
+ 330:	30 e0       	ldi	r19, 0x00	; 0
+ 332:	f9 01       	movw	r30, r18
+ 334:	20 81       	ld	r18, Z
+ 336:	27 7f       	andi	r18, 0xF7	; 247
+ 338:	fc 01       	movw	r30, r24
+ 33a:	20 83       	st	Z, r18
+			timer_Set(sleep_timer, WAKE_TIME_COUNT);	// reset sleep timer
+ 33c:	83 e0       	ldi	r24, 0x03	; 3
+ 33e:	68 e4       	ldi	r22, 0x48	; 72
+ 340:	79 e0       	ldi	r23, 0x09	; 9
+ 342:	31 df       	rcall	.-414    	; 0x1a6 <timer_Set>
+			SLEEP_ENABLED;								// Enabled to allow entry into Sleep mode
+ 344:	83 e5       	ldi	r24, 0x53	; 83
+ 346:	90 e0       	ldi	r25, 0x00	; 0
+ 348:	25 e0       	ldi	r18, 0x05	; 5
+ 34a:	fc 01       	movw	r30, r24
+ 34c:	20 83       	st	Z, r18
+			sei();										// keeps interrupts enabled while Sleeping, so micro can be waken
+ 34e:	78 94       	sei
+			sleep_cpu();								// 1st instruction after SEI is guaranteed to be executed before an INT could trigger, so device will be put to sleep.
+ 350:	88 95       	sleep
+			SLEEP_DISABLED;								// Execute here when awaken, then return to main( ) loop.  (won't allow entry into sleep mode)
+ 352:	83 e5       	ldi	r24, 0x53	; 83
+ 354:	90 e0       	ldi	r25, 0x00	; 0
+ 356:	24 e0       	ldi	r18, 0x04	; 4
+ 358:	fc 01       	movw	r30, r24
+ 35a:	20 83       	st	Z, r18
+		}		
+		sei();			
+ 35c:	78 94       	sei
+}
+ 35e:	cf 91       	pop	r28
+ 360:	df 91       	pop	r29
+ 362:	08 95       	ret
+
+00000364 <IR_XMIT_OFF>:
+/*	     Private Function Definitions			*/
+/************************************************/
+
+// NON-FAST PWM MODE macro version
+PRIVATE inline void IR_XMIT_OFF(void)
+{					
+ 364:	df 93       	push	r29
+ 366:	cf 93       	push	r28
+ 368:	cd b7       	in	r28, 0x3d	; 61
+ 36a:	de b7       	in	r29, 0x3e	; 62
+	TIMSK0 &= ~(1 << TIMER0_MATCHA_INT_EN_MASK );		// Disable Timer0 MatchA Interrupt
+ 36c:	8e e6       	ldi	r24, 0x6E	; 110
+ 36e:	90 e0       	ldi	r25, 0x00	; 0
+ 370:	2e e6       	ldi	r18, 0x6E	; 110
+ 372:	30 e0       	ldi	r19, 0x00	; 0
+ 374:	f9 01       	movw	r30, r18
+ 376:	20 81       	ld	r18, Z
+ 378:	2d 7f       	andi	r18, 0xFD	; 253
+ 37a:	fc 01       	movw	r30, r24
+ 37c:	20 83       	st	Z, r18
+	PORTD  &= ~(1 << IR_XMIT_PIN_MASK );				// Clear IR xmit pin
+ 37e:	8b e2       	ldi	r24, 0x2B	; 43
+ 380:	90 e0       	ldi	r25, 0x00	; 0
+ 382:	2b e2       	ldi	r18, 0x2B	; 43
+ 384:	30 e0       	ldi	r19, 0x00	; 0
+ 386:	f9 01       	movw	r30, r18
+ 388:	20 81       	ld	r18, Z
+ 38a:	2f 7d       	andi	r18, 0xDF	; 223
+ 38c:	fc 01       	movw	r30, r24
+ 38e:	20 83       	st	Z, r18
+}
+ 390:	cf 91       	pop	r28
+ 392:	df 91       	pop	r29
+ 394:	08 95       	ret
+
+00000396 <IR_transmit_Init>:
+
+//NOTE:The fastest that commands will be sent is 114ms, the resend rate (whether same key press or new key)
+PUBLIC void IR_transmit_Init(void)
+{
+ 396:	df 93       	push	r29
+ 398:	cf 93       	push	r28
+ 39a:	cd b7       	in	r28, 0x3d	; 61
+ 39c:	de b7       	in	r29, 0x3e	; 62
+	// nothing here yet
+}
+ 39e:	cf 91       	pop	r28
+ 3a0:	df 91       	pop	r29
+ 3a2:	08 95       	ret
+
+000003a4 <IR_transmit_Control>:
+
+PUBLIC void IR_transmit_Control(void)
+{
+ 3a4:	df 93       	push	r29
+ 3a6:	cf 93       	push	r28
+ 3a8:	00 d0       	rcall	.+0      	; 0x3aa <IR_transmit_Control+0x6>
+ 3aa:	0f 92       	push	r0
+ 3ac:	cd b7       	in	r28, 0x3d	; 61
+ 3ae:	de b7       	in	r29, 0x3e	; 62
+	uint8_t i;
+	uint16_t IR_data;										// make this file scope???
+	
+	if(!READY_TO_XMIT_STREAM)								// Has repeat rate timer expired?
+ 3b0:	81 e0       	ldi	r24, 0x01	; 1
+ 3b2:	dc de       	rcall	.-584    	; 0x16c <timer_Get>
+ 3b4:	00 97       	sbiw	r24, 0x00	; 0
+ 3b6:	09 f0       	breq	.+2      	; 0x3ba <IR_transmit_Control+0x16>
+ 3b8:	71 c0       	rjmp	.+226    	; 0x49c <IR_transmit_Control+0xf8>
+	{
+		return;
+	}
+	
+	timer_Set(repeat_rate_timer, REPEAT_RATE_COUNT);		// Reset repeat rate timer for next full command transmission
+ 3ba:	81 e0       	ldi	r24, 0x01	; 1
+ 3bc:	60 e0       	ldi	r22, 0x00	; 0
+ 3be:	71 e0       	ldi	r23, 0x01	; 1
+ 3c0:	f2 de       	rcall	.-540    	; 0x1a6 <timer_Set>
+	timer_Set(bit_rate_timer, INITIAL_STATE);				// Synchronize repeat_rate AND bit_rate timers
+ 3c2:	80 e0       	ldi	r24, 0x00	; 0
+ 3c4:	60 e0       	ldi	r22, 0x00	; 0
+ 3c6:	70 e0       	ldi	r23, 0x00	; 0
+ 3c8:	ee de       	rcall	.-548    	; 0x1a6 <timer_Set>
+	/*  ONLY READ COMMAND at the REPEAT RATE	*/
+	//IR_data = IR_queue_Read(void);						// For Q ONLY: READ Q
+	IR_data = g_IR_command_code;							// For NO Q ONLY: READ Global
+ 3ca:	80 91 14 01 	lds	r24, 0x0114
+ 3ce:	90 91 15 01 	lds	r25, 0x0115
+ 3d2:	9b 83       	std	Y+3, r25	; 0x03
+ 3d4:	8a 83       	std	Y+2, r24	; 0x02
+	g_IR_command_code = 0;									// For NO Q ONLY: READ Global:  Clear command buffer
+ 3d6:	10 92 15 01 	sts	0x0115, r1
+ 3da:	10 92 14 01 	sts	0x0114, r1
+	if(IR_data != 0)										// ANY command to Send?
+ 3de:	8a 81       	ldd	r24, Y+2	; 0x02
+ 3e0:	9b 81       	ldd	r25, Y+3	; 0x03
+ 3e2:	00 97       	sbiw	r24, 0x00	; 0
+ 3e4:	09 f4       	brne	.+2      	; 0x3e8 <IR_transmit_Control+0x44>
+ 3e6:	5b c0       	rjmp	.+182    	; 0x49e <IR_transmit_Control+0xfa>
+	{
+
+		for(i=0; i < NUMBER_OF_BITS; i++)					// xmit all bits for one RC-5 IR transmit packet
+ 3e8:	19 82       	std	Y+1, r1	; 0x01
+ 3ea:	4d c0       	rjmp	.+154    	; 0x486 <IR_transmit_Control+0xe2>
+		{
+			if(IR_data & 1<<i)								// Test if next bit to send is a 1 or 0
+ 3ec:	89 81       	ldd	r24, Y+1	; 0x01
+ 3ee:	28 2f       	mov	r18, r24
+ 3f0:	30 e0       	ldi	r19, 0x00	; 0
+ 3f2:	81 e0       	ldi	r24, 0x01	; 1
+ 3f4:	90 e0       	ldi	r25, 0x00	; 0
+ 3f6:	02 c0       	rjmp	.+4      	; 0x3fc <IR_transmit_Control+0x58>
+ 3f8:	88 0f       	add	r24, r24
+ 3fa:	99 1f       	adc	r25, r25
+ 3fc:	2a 95       	dec	r18
+ 3fe:	e2 f7       	brpl	.-8      	; 0x3f8 <IR_transmit_Control+0x54>
+ 400:	9c 01       	movw	r18, r24
+ 402:	8a 81       	ldd	r24, Y+2	; 0x02
+ 404:	9b 81       	ldd	r25, Y+3	; 0x03
+ 406:	82 23       	and	r24, r18
+ 408:	93 23       	and	r25, r19
+ 40a:	00 97       	sbiw	r24, 0x00	; 0
+ 40c:	e9 f0       	breq	.+58     	; 0x448 <IR_transmit_Control+0xa4>
+			{												// xmit a Manchester encoded 1 (Call manchester_Encode(ONE) )
+				while(!READY_TO_XMIT_BIT);					// wait for bit clk before transmitting 1st 1/2 bit
+ 40e:	00 00       	nop
+ 410:	80 e0       	ldi	r24, 0x00	; 0
+ 412:	ac de       	rcall	.-680    	; 0x16c <timer_Get>
+ 414:	00 97       	sbiw	r24, 0x00	; 0
+ 416:	e1 f7       	brne	.-8      	; 0x410 <IR_transmit_Control+0x6c>
+				IR_XMIT_OFF();								// xmit low 1/2 of bit
+ 418:	a5 df       	rcall	.-182    	; 0x364 <IR_XMIT_OFF>
+				timer_Set(bit_rate_timer, BIT_RATE_COUNT);	// Reset bit rate timer for next bit transmission
+ 41a:	80 e0       	ldi	r24, 0x00	; 0
+ 41c:	62 e0       	ldi	r22, 0x02	; 2
+ 41e:	70 e0       	ldi	r23, 0x00	; 0
+ 420:	c2 de       	rcall	.-636    	; 0x1a6 <timer_Set>
+				
+				while(!READY_TO_XMIT_BIT);					// wait for bit clk before transmitting 2nd 1/2 bit
+ 422:	00 00       	nop
+ 424:	80 e0       	ldi	r24, 0x00	; 0
+ 426:	a2 de       	rcall	.-700    	; 0x16c <timer_Get>
+ 428:	00 97       	sbiw	r24, 0x00	; 0
+ 42a:	e1 f7       	brne	.-8      	; 0x424 <IR_transmit_Control+0x80>
+				IR_XMIT_ON;									// xmit high 1/2 of bit
+ 42c:	8e e6       	ldi	r24, 0x6E	; 110
+ 42e:	90 e0       	ldi	r25, 0x00	; 0
+ 430:	2e e6       	ldi	r18, 0x6E	; 110
+ 432:	30 e0       	ldi	r19, 0x00	; 0
+ 434:	f9 01       	movw	r30, r18
+ 436:	20 81       	ld	r18, Z
+ 438:	22 60       	ori	r18, 0x02	; 2
+ 43a:	fc 01       	movw	r30, r24
+ 43c:	20 83       	st	Z, r18
+				timer_Set(bit_rate_timer, BIT_RATE_COUNT);	// Reset bit rate timer for next bit transmission
+ 43e:	80 e0       	ldi	r24, 0x00	; 0
+ 440:	62 e0       	ldi	r22, 0x02	; 2
+ 442:	70 e0       	ldi	r23, 0x00	; 0
+ 444:	b0 de       	rcall	.-672    	; 0x1a6 <timer_Set>
+ 446:	1c c0       	rjmp	.+56     	; 0x480 <IR_transmit_Control+0xdc>
+				//TCNT0 = 0;								// Restart timer before starting TURNING ON PWM -- FAST PWM MODE ONLY
+				
+			}
+			else
+			{												// xmit a Manchester encoded 0 (Call manchester_Encode(ZERO) )
+				while(!READY_TO_XMIT_BIT);					// wait for bit clk before transmitting 1st 1/2 bit
+ 448:	00 00       	nop
+ 44a:	80 e0       	ldi	r24, 0x00	; 0
+ 44c:	8f de       	rcall	.-738    	; 0x16c <timer_Get>
+ 44e:	00 97       	sbiw	r24, 0x00	; 0
+ 450:	e1 f7       	brne	.-8      	; 0x44a <IR_transmit_Control+0xa6>
+				IR_XMIT_ON;									// xmit high 1/2 of bit
+ 452:	8e e6       	ldi	r24, 0x6E	; 110
+ 454:	90 e0       	ldi	r25, 0x00	; 0
+ 456:	2e e6       	ldi	r18, 0x6E	; 110
+ 458:	30 e0       	ldi	r19, 0x00	; 0
+ 45a:	f9 01       	movw	r30, r18
+ 45c:	20 81       	ld	r18, Z
+ 45e:	22 60       	ori	r18, 0x02	; 2
+ 460:	fc 01       	movw	r30, r24
+ 462:	20 83       	st	Z, r18
+				timer_Set(bit_rate_timer, BIT_RATE_COUNT);	// Reset bit rate timer for next bit transmission
+ 464:	80 e0       	ldi	r24, 0x00	; 0
+ 466:	62 e0       	ldi	r22, 0x02	; 2
+ 468:	70 e0       	ldi	r23, 0x00	; 0
+ 46a:	9d de       	rcall	.-710    	; 0x1a6 <timer_Set>
+				//TCNT0 = 0;									// Restart timer before starting TURNING ON PWM -- FAST PWM MODE ONLY
+				
+				while(!READY_TO_XMIT_BIT);					// wait for bit clk before transmitting 2nd 1/2 bit
+ 46c:	00 00       	nop
+ 46e:	80 e0       	ldi	r24, 0x00	; 0
+ 470:	7d de       	rcall	.-774    	; 0x16c <timer_Get>
+ 472:	00 97       	sbiw	r24, 0x00	; 0
+ 474:	e1 f7       	brne	.-8      	; 0x46e <IR_transmit_Control+0xca>
+				IR_XMIT_OFF();								// xmit low 1/2 of bit
+ 476:	76 df       	rcall	.-276    	; 0x364 <IR_XMIT_OFF>
+				timer_Set(bit_rate_timer, BIT_RATE_COUNT);	// Reset bit rate timer for next bit transmission
+ 478:	80 e0       	ldi	r24, 0x00	; 0
+ 47a:	62 e0       	ldi	r22, 0x02	; 2
+ 47c:	70 e0       	ldi	r23, 0x00	; 0
+ 47e:	93 de       	rcall	.-730    	; 0x1a6 <timer_Set>
+	IR_data = g_IR_command_code;							// For NO Q ONLY: READ Global
+	g_IR_command_code = 0;									// For NO Q ONLY: READ Global:  Clear command buffer
+	if(IR_data != 0)										// ANY command to Send?
+	{
+
+		for(i=0; i < NUMBER_OF_BITS; i++)					// xmit all bits for one RC-5 IR transmit packet
+ 480:	89 81       	ldd	r24, Y+1	; 0x01
+ 482:	8f 5f       	subi	r24, 0xFF	; 255
+ 484:	89 83       	std	Y+1, r24	; 0x01
+ 486:	89 81       	ldd	r24, Y+1	; 0x01
+ 488:	8e 30       	cpi	r24, 0x0E	; 14
+ 48a:	08 f4       	brcc	.+2      	; 0x48e <IR_transmit_Control+0xea>
+ 48c:	af cf       	rjmp	.-162    	; 0x3ec <IR_transmit_Control+0x48>
+				while(!READY_TO_XMIT_BIT);					// wait for bit clk before transmitting 2nd 1/2 bit
+				IR_XMIT_OFF();								// xmit low 1/2 of bit
+				timer_Set(bit_rate_timer, BIT_RATE_COUNT);	// Reset bit rate timer for next bit transmission
+			}
+		}
+		while(!READY_TO_XMIT_BIT);							// wait for last 1/2 of last bit to finish transmitting
+ 48e:	00 00       	nop
+ 490:	80 e0       	ldi	r24, 0x00	; 0
+ 492:	6c de       	rcall	.-808    	; 0x16c <timer_Get>
+ 494:	00 97       	sbiw	r24, 0x00	; 0
+ 496:	e1 f7       	brne	.-8      	; 0x490 <IR_transmit_Control+0xec>
+		IR_XMIT_OFF();										// Turn of IR xmit, during IDLE time
+ 498:	65 df       	rcall	.-310    	; 0x364 <IR_XMIT_OFF>
+ 49a:	01 c0       	rjmp	.+2      	; 0x49e <IR_transmit_Control+0xfa>
+	uint8_t i;
+	uint16_t IR_data;										// make this file scope???
+	
+	if(!READY_TO_XMIT_STREAM)								// Has repeat rate timer expired?
+	{
+		return;
+ 49c:	00 00       	nop
+			}
+		}
+		while(!READY_TO_XMIT_BIT);							// wait for last 1/2 of last bit to finish transmitting
+		IR_XMIT_OFF();										// Turn of IR xmit, during IDLE time
+	}	
+}
+ 49e:	0f 90       	pop	r0
+ 4a0:	0f 90       	pop	r0
+ 4a2:	0f 90       	pop	r0
+ 4a4:	cf 91       	pop	r28
+ 4a6:	df 91       	pop	r29
+ 4a8:	08 95       	ret
+
+000004aa <switch_scan_Init>:
+/*	     Inline Function Definitions			*/
+/*	     Public Function Definitions			*/
+/*	     Private Function Definitions			*/
+/************************************************/
+PUBLIC void switch_scan_Init(void)
+{
+ 4aa:	df 93       	push	r29
+ 4ac:	cf 93       	push	r28
+ 4ae:	cd b7       	in	r28, 0x3d	; 61
+ 4b0:	de b7       	in	r29, 0x3e	; 62
+	/* Setup Pin Change interrupt on PORTC, for remote Switch Scan (6 switches */
+	PCICR =					// Pin Change Interrupt Control Register
+ 4b2:	88 e6       	ldi	r24, 0x68	; 104
+ 4b4:	90 e0       	ldi	r25, 0x00	; 0
+ 4b6:	22 e0       	ldi	r18, 0x02	; 2
+ 4b8:	fc 01       	movw	r30, r24
+ 4ba:	20 83       	st	Z, r18
+	(0 << bit_4)	|		// reserved bit
+	(0 << bit_5)	|		// reserved bit
+	(0 << bit_6)	|		// reserved bit
+	(0 << bit_7);			// reserved bit
+	
+	PCMSK1 =				// Pin change Mask register 1 (PORTC pins)
+ 4bc:	8c e6       	ldi	r24, 0x6C	; 108
+ 4be:	90 e0       	ldi	r25, 0x00	; 0
+ 4c0:	2f e3       	ldi	r18, 0x3F	; 63
+ 4c2:	fc 01       	movw	r30, r24
+ 4c4:	20 83       	st	Z, r18
+	(1 << bit_3)	|		// PCINT11: Enabled (SW_STATUS)
+	(1 << bit_4)	|		// PCINT12: Enabled (SW_FILTER)
+	(1 << bit_5)	|		// PCINT13: Enabled (SW_INPUT)
+	(0 << bit_6)	|		// PCINT14: Disabled (used for RESET function)
+	(0 << bit_7);			// reserved: NA
+}
+ 4c6:	cf 91       	pop	r28
+ 4c8:	df 91       	pop	r29
+ 4ca:	08 95       	ret
+
+000004cc <switch_scan_Control>:
+/* switch_scan_Control: Handle the scanning of the switches.  load the single	*/
+/*						byte command buffer with ONE valid command, each IR		*/
+/*						Transmit Repeat cycle.									*/
+/********************************************************************************/
+PUBLIC void switch_scan_Control(void)	// This function would go away with Q
+{
+ 4cc:	df 93       	push	r29
+ 4ce:	cf 93       	push	r28
+ 4d0:	00 d0       	rcall	.+0      	; 0x4d2 <switch_scan_Control+0x6>
+ 4d2:	cd b7       	in	r28, 0x3d	; 61
+ 4d4:	de b7       	in	r29, 0x3e	; 62
+	static uint8_t toggle_bit = 0;
+	static uint8_t saved_switch_bits;
+	static uint16_t saved_IR_command_code;
+	uint8_t switch_bits = 0;
+ 4d6:	19 82       	std	Y+1, r1	; 0x01
+	uint8_t count;
+	
+	// DEBOUNCE SWITCHES note ISR on pin change, kinda does this automatically based on latency to change
+	
+	READ_KEYS;									// assign switch status to switch_bits
+ 4d8:	86 e2       	ldi	r24, 0x26	; 38
+ 4da:	90 e0       	ldi	r25, 0x00	; 0
+ 4dc:	fc 01       	movw	r30, r24
+ 4de:	80 81       	ld	r24, Z
+ 4e0:	89 83       	std	Y+1, r24	; 0x01
+	switch_bits = ~switch_bits;					// correct for switch polarity
+ 4e2:	89 81       	ldd	r24, Y+1	; 0x01
+ 4e4:	80 95       	com	r24
+ 4e6:	89 83       	std	Y+1, r24	; 0x01
+	switch_bits &= SWITCH_MASK;					// isolate switch inputs
+ 4e8:	89 81       	ldd	r24, Y+1	; 0x01
+ 4ea:	8f 73       	andi	r24, 0x3F	; 63
+ 4ec:	89 83       	std	Y+1, r24	; 0x01
+	/********************************************/
+	/*		Handle InValid key Presses			*/
+	/********************************************/
+	if(!VALID_KEY_PRESSED)						// NO Key pressed OR MULTIPLE Keys pressed
+ 4ee:	89 81       	ldd	r24, Y+1	; 0x01
+ 4f0:	28 2f       	mov	r18, r24
+ 4f2:	30 e0       	ldi	r19, 0x00	; 0
+ 4f4:	89 81       	ldd	r24, Y+1	; 0x01
+ 4f6:	48 2f       	mov	r20, r24
+ 4f8:	50 e0       	ldi	r21, 0x00	; 0
+ 4fa:	89 81       	ldd	r24, Y+1	; 0x01
+ 4fc:	88 2f       	mov	r24, r24
+ 4fe:	90 e0       	ldi	r25, 0x00	; 0
+ 500:	90 95       	com	r25
+ 502:	81 95       	neg	r24
+ 504:	9f 4f       	sbci	r25, 0xFF	; 255
+ 506:	84 23       	and	r24, r20
+ 508:	95 23       	and	r25, r21
+ 50a:	28 17       	cp	r18, r24
+ 50c:	39 07       	cpc	r19, r25
+ 50e:	19 f4       	brne	.+6      	; 0x516 <switch_scan_Control+0x4a>
+ 510:	89 81       	ldd	r24, Y+1	; 0x01
+ 512:	88 23       	and	r24, r24
+ 514:	19 f4       	brne	.+6      	; 0x51c <switch_scan_Control+0x50>
+	{
+		saved_switch_bits = 0;					// Update saved switch status and prepare for next scan
+ 516:	10 92 16 01 	sts	0x0116, r1
+		return;
+ 51a:	57 c0       	rjmp	.+174    	; 0x5ca <switch_scan_Control+0xfe>
+		//g_IR_command_code = 0;				// clear buffer in iR_Transmit, once the command is about to be sent/  This will
+	}											// insure a button press and fast release before sending, will still be sent 
+	
+	timer_Set(sleep_timer, WAKE_TIME_COUNT);	// reset sleep timer
+ 51c:	83 e0       	ldi	r24, 0x03	; 3
+ 51e:	68 e4       	ldi	r22, 0x48	; 72
+ 520:	79 e0       	ldi	r23, 0x09	; 9
+ 522:	41 de       	rcall	.-894    	; 0x1a6 <timer_Set>
+	/********************************************/
+	/*		Handle Valid Single Key Presses		*/
+	/********************************************/
+	if(!SAME_KEY)								// Was this SINGLE KEY just pressed for the 1st time
+ 524:	90 91 16 01 	lds	r25, 0x0116
+ 528:	89 81       	ldd	r24, Y+1	; 0x01
+ 52a:	98 17       	cp	r25, r24
+ 52c:	09 f4       	brne	.+2      	; 0x530 <switch_scan_Control+0x64>
+ 52e:	45 c0       	rjmp	.+138    	; 0x5ba <switch_scan_Control+0xee>
+	{											// RISK: Same key pressed repeatedly TOO FAST! (ie missing the release state)
+		saved_switch_bits = switch_bits;		// Yes
+ 530:	89 81       	ldd	r24, Y+1	; 0x01
+ 532:	80 93 16 01 	sts	0x0116, r24
+		toggle_bit = !toggle_bit;				// adjust toggle bit
+ 536:	90 91 17 01 	lds	r25, 0x0117
+ 53a:	81 e0       	ldi	r24, 0x01	; 1
+ 53c:	99 23       	and	r25, r25
+ 53e:	09 f0       	breq	.+2      	; 0x542 <switch_scan_Control+0x76>
+ 540:	80 e0       	ldi	r24, 0x00	; 0
+ 542:	80 93 17 01 	sts	0x0117, r24
+		
+		count=0;
+ 546:	1a 82       	std	Y+2, r1	; 0x02
+		while(switch_bits)								// find index into command table for new key
+ 548:	06 c0       	rjmp	.+12     	; 0x556 <switch_scan_Control+0x8a>
+		{
+			switch_bits >>= 1;							// This LOOP will CLEAR switch_bits (ie the Switch Status buffer)		
+ 54a:	89 81       	ldd	r24, Y+1	; 0x01
+ 54c:	86 95       	lsr	r24
+ 54e:	89 83       	std	Y+1, r24	; 0x01
+			count++;
+ 550:	8a 81       	ldd	r24, Y+2	; 0x02
+ 552:	8f 5f       	subi	r24, 0xFF	; 255
+ 554:	8a 83       	std	Y+2, r24	; 0x02
+	{											// RISK: Same key pressed repeatedly TOO FAST! (ie missing the release state)
+		saved_switch_bits = switch_bits;		// Yes
+		toggle_bit = !toggle_bit;				// adjust toggle bit
+		
+		count=0;
+		while(switch_bits)								// find index into command table for new key
+ 556:	89 81       	ldd	r24, Y+1	; 0x01
+ 558:	88 23       	and	r24, r24
+ 55a:	b9 f7       	brne	.-18     	; 0x54a <switch_scan_Control+0x7e>
+		{
+			switch_bits >>= 1;							// This LOOP will CLEAR switch_bits (ie the Switch Status buffer)		
+			count++;
+		}
+		g_IR_command_code = command_table[count-1];		// get appropriate FULL COMMAND_CODE from table
+ 55c:	8a 81       	ldd	r24, Y+2	; 0x02
+ 55e:	88 2f       	mov	r24, r24
+ 560:	90 e0       	ldi	r25, 0x00	; 0
+ 562:	01 97       	sbiw	r24, 0x01	; 1
+ 564:	88 0f       	add	r24, r24
+ 566:	99 1f       	adc	r25, r25
+ 568:	88 5f       	subi	r24, 0xF8	; 248
+ 56a:	9e 4f       	sbci	r25, 0xFE	; 254
+ 56c:	fc 01       	movw	r30, r24
+ 56e:	80 81       	ld	r24, Z
+ 570:	91 81       	ldd	r25, Z+1	; 0x01
+ 572:	90 93 15 01 	sts	0x0115, r25
+ 576:	80 93 14 01 	sts	0x0114, r24
+		
+		if(toggle_bit)									// Insert the Toggle bit
+ 57a:	80 91 17 01 	lds	r24, 0x0117
+ 57e:	88 23       	and	r24, r24
+ 580:	51 f0       	breq	.+20     	; 0x596 <switch_scan_Control+0xca>
+		{
+			SET_TOGGLE_BIT;  
+ 582:	80 91 14 01 	lds	r24, 0x0114
+ 586:	90 91 15 01 	lds	r25, 0x0115
+ 58a:	84 60       	ori	r24, 0x04	; 4
+ 58c:	90 93 15 01 	sts	0x0115, r25
+ 590:	80 93 14 01 	sts	0x0114, r24
+ 594:	09 c0       	rjmp	.+18     	; 0x5a8 <switch_scan_Control+0xdc>
+		}
+		else
+		{
+			CLEAR_TOGGLE_BIT;
+ 596:	80 91 14 01 	lds	r24, 0x0114
+ 59a:	90 91 15 01 	lds	r25, 0x0115
+ 59e:	8b 7f       	andi	r24, 0xFB	; 251
+ 5a0:	90 93 15 01 	sts	0x0115, r25
+ 5a4:	80 93 14 01 	sts	0x0114, r24
+		}
+		saved_IR_command_code = g_IR_command_code;	// keep track for Keys that are HELD DOWN
+ 5a8:	80 91 14 01 	lds	r24, 0x0114
+ 5ac:	90 91 15 01 	lds	r25, 0x0115
+ 5b0:	90 93 19 01 	sts	0x0119, r25
+ 5b4:	80 93 18 01 	sts	0x0118, r24
+ 5b8:	08 c0       	rjmp	.+16     	; 0x5ca <switch_scan_Control+0xfe>
+	}		
+	else
+	{
+		g_IR_command_code = saved_IR_command_code;	// This is a HELD DOWN KEY
+ 5ba:	80 91 18 01 	lds	r24, 0x0118
+ 5be:	90 91 19 01 	lds	r25, 0x0119
+ 5c2:	90 93 15 01 	sts	0x0115, r25
+ 5c6:	80 93 14 01 	sts	0x0114, r24
+	}	
+
+}	
+ 5ca:	0f 90       	pop	r0
+ 5cc:	0f 90       	pop	r0
+ 5ce:	cf 91       	pop	r28
+ 5d0:	df 91       	pop	r29
+ 5d2:	08 95       	ret
+
+000005d4 <__vector_4>:
+
+/********************************************************/
+/* Interrupt Handler: Pin change Interrupt Request 1	*/
+/********************************************************/
+ISR(PCINT1_vect)		// Pin Change Interrupt Request 1 FOR NO Q
+{
+ 5d4:	1f 92       	push	r1
+ 5d6:	0f 92       	push	r0
+ 5d8:	0f b6       	in	r0, 0x3f	; 63
+ 5da:	0f 92       	push	r0
+ 5dc:	11 24       	eor	r1, r1
+ 5de:	2f 93       	push	r18
+ 5e0:	3f 93       	push	r19
+ 5e2:	4f 93       	push	r20
+ 5e4:	5f 93       	push	r21
+ 5e6:	6f 93       	push	r22
+ 5e8:	7f 93       	push	r23
+ 5ea:	8f 93       	push	r24
+ 5ec:	9f 93       	push	r25
+ 5ee:	af 93       	push	r26
+ 5f0:	bf 93       	push	r27
+ 5f2:	ef 93       	push	r30
+ 5f4:	ff 93       	push	r31
+ 5f6:	df 93       	push	r29
+ 5f8:	cf 93       	push	r28
+ 5fa:	cd b7       	in	r28, 0x3d	; 61
+ 5fc:	de b7       	in	r29, 0x3e	; 62
+	// Not sure yet what to do, if anything
+	
+	/********************/
+	/*Reset Sleep timer */
+	/********************/
+	timer_Set(sleep_timer, WAKE_TIME_COUNT);		// may want to set Flag and do in switch_scan_Control(void)
+ 5fe:	83 e0       	ldi	r24, 0x03	; 3
+ 600:	68 e4       	ldi	r22, 0x48	; 72
+ 602:	79 e0       	ldi	r23, 0x09	; 9
+ 604:	d0 dd       	rcall	.-1120   	; 0x1a6 <timer_Set>
+}
+ 606:	cf 91       	pop	r28
+ 608:	df 91       	pop	r29
+ 60a:	ff 91       	pop	r31
+ 60c:	ef 91       	pop	r30
+ 60e:	bf 91       	pop	r27
+ 610:	af 91       	pop	r26
+ 612:	9f 91       	pop	r25
+ 614:	8f 91       	pop	r24
+ 616:	7f 91       	pop	r23
+ 618:	6f 91       	pop	r22
+ 61a:	5f 91       	pop	r21
+ 61c:	4f 91       	pop	r20
+ 61e:	3f 91       	pop	r19
+ 620:	2f 91       	pop	r18
+ 622:	0f 90       	pop	r0
+ 624:	0f be       	out	0x3f, r0	; 63
+ 626:	0f 90       	pop	r0
+ 628:	1f 90       	pop	r1
+ 62a:	18 95       	reti
+
+0000062c <led_blink_Control>:
+
+/************************************/
+/*  LED blink (development only)	*/
+/************************************/
+PRIVATE void led_blink_Control(void)
+{
+ 62c:	df 93       	push	r29
+ 62e:	cf 93       	push	r28
+ 630:	cd b7       	in	r28, 0x3d	; 61
+ 632:	de b7       	in	r29, 0x3e	; 62
+	if(timer_Get(led_blink_timer) == 0 )
+ 634:	82 e0       	ldi	r24, 0x02	; 2
+ 636:	9a dd       	rcall	.-1228   	; 0x16c <timer_Get>
+ 638:	00 97       	sbiw	r24, 0x00	; 0
+ 63a:	49 f4       	brne	.+18     	; 0x64e <led_blink_Control+0x22>
+	{
+		timer_Set(led_blink_timer, BLINK_RATE_COUNT);
+ 63c:	82 e0       	ldi	r24, 0x02	; 2
+ 63e:	63 ea       	ldi	r22, 0xA3	; 163
+ 640:	74 e0       	ldi	r23, 0x04	; 4
+ 642:	b1 dd       	rcall	.-1182   	; 0x1a6 <timer_Set>
+		PIND = DEVELOPMENT_LED;						// writing a 1 to PINxn toggles the value of PORTxn, independent of DDRxn.	
+ 644:	89 e2       	ldi	r24, 0x29	; 41
+ 646:	90 e0       	ldi	r25, 0x00	; 0
+ 648:	28 e0       	ldi	r18, 0x08	; 8
+ 64a:	fc 01       	movw	r30, r24
+ 64c:	20 83       	st	Z, r18
+	}
+}
+ 64e:	cf 91       	pop	r28
+ 650:	df 91       	pop	r29
+ 652:	08 95       	ret
+
+00000654 <init_System>:
+
+/****************************************************/
+/* init_System(): Call init routine for each module	*/
+/****************************************************/
+PRIVATE void init_System(void)
+{
+ 654:	df 93       	push	r29
+ 656:	cf 93       	push	r28
+ 658:	cd b7       	in	r28, 0x3d	; 61
+ 65a:	de b7       	in	r29, 0x3e	; 62
+	switch_scan_Init();
+ 65c:	26 df       	rcall	.-436    	; 0x4aa <switch_scan_Init>
+	IR_transmit_Init();
+ 65e:	9b de       	rcall	.-714    	; 0x396 <IR_transmit_Init>
+	sleep_state_Init();
+ 660:	4b de       	rcall	.-874    	; 0x2f8 <sleep_state_Init>
+	timer_Init();
+ 662:	56 dd       	rcall	.-1364   	; 0x110 <timer_Init>
+}
+ 664:	cf 91       	pop	r28
+ 666:	df 91       	pop	r29
+ 668:	08 95       	ret
+
+0000066a <main>:
+/****************************************/
+/* main():	Program entry point			*/
+/****************************************/
+
+int main(void)
+{
+ 66a:	df 93       	push	r29
+ 66c:	cf 93       	push	r28
+ 66e:	cd b7       	in	r28, 0x3d	; 61
+ 670:	de b7       	in	r29, 0x3e	; 62
+    configure_Micro();					// configure: IO Ports, Clock, Power, Interrupts, etc
+ 672:	44 dd       	rcall	.-1400   	; 0xfc <configure_Micro>
+	init_System();
+ 674:	ef df       	rcall	.-34     	; 0x654 <init_System>
+	ENABLE_INTERRUPTS();
+ 676:	78 94       	sei
+
+	while(1)
+    {
+        switch_scan_Control();			// scan for valid single key presses and load command buffer with valid key
+ 678:	29 df       	rcall	.-430    	; 0x4cc <switch_scan_Control>
+		IR_transmit_Control();			// Sends any valid command to PWM machine at the RESET/SEND rate, and then on to IR driver PIN.
+ 67a:	94 de       	rcall	.-728    	; 0x3a4 <IR_transmit_Control>
+		sleep_state_Control();			// check if sleep timer has expired.  If so, initiates Sleep mode
+ 67c:	4d de       	rcall	.-870    	; 0x318 <sleep_state_Control>
+		led_blink_Control();			// blinking LED, for development only
+ 67e:	d6 df       	rcall	.-84     	; 0x62c <led_blink_Control>
+		//WDT();
+    }
+ 680:	fb cf       	rjmp	.-10     	; 0x678 <main+0xe>
+
+00000682 <_exit>:
+ 682:	f8 94       	cli
+
+00000684 <__stop_program>:
+ 684:	ff cf       	rjmp	.-2      	; 0x684 <__stop_program>
